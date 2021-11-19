@@ -1,0 +1,16 @@
+{
+	"embed": {
+		"title": "",
+		"description": "",
+		"color": "#03e8fc",
+		"fields": [
+			{
+				"name": "今日の天気",
+				"value": "```!w t 地域名```"
+      },
+      {
+        "name":"◯日後の天気（最大6日後まで）"
+      }
+		]
+	}
+}
