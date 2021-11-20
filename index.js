@@ -40,7 +40,7 @@ client.on('message', async message => {
       url: 'https://script.google.com/macros/s/AKfycbwAr3seBQUIOIF-p4dxP5KuGCfhAnwxdfTTTOCynNHOOZbvavWHWxUMyoUK50NW1FMk/exec?address=' + address + '',
       method: 'GET'
     }
-    request(options_map, function(error, response, body) {
+    request(options_map, function(error, response, body) {//request to get lat,lng
       if (body == "Error") {
         client.channels.cache.get(message_channel_id).send("情報を取得できませんでした。");
         return;
@@ -57,13 +57,15 @@ client.on('message', async message => {
         method: 'GET'
       }
 
-      request(options_weather, function(error, response, body) {
+      request(options_weather, function(error, response, body) {//request to get weather
+        //Infomations
         const weather_info = JSON.parse(body);
         const times = weather_info.daily.time;
         const weather_codes = weather_info.daily.weathercode;
         const temp_maxs = weather_info.daily.temperature_2m_max;
         const temp_mins = weather_info.daily.temperature_2m_min;
         const precipitation_sums = weather_info.daily.precipitation_sum;
+
         console.log(body);
         switch (command_options[0]) {
 
@@ -73,8 +75,7 @@ client.on('message', async message => {
             const today_weather = subJS.c_w(today_weather_code);
             const today_temp_max = temp_maxs[0];
             const today_temp_min = temp_mins[0];
-            const precipitation_sum = precipitation_sums[0]
-
+            const precipitation_sum = precipitation_sums[0];
             message.reply({
               embed: {
                 title: formated_address + "周辺の気象",
@@ -90,7 +91,7 @@ client.on('message', async message => {
           }
             break;
 
-          case "0":
+          case "0": //Get weather [n]day after
           case "1":
           case "2":
           case "3":
@@ -118,12 +119,13 @@ client.on('message', async message => {
               });
             }
             break;
-          case "7":
+          case "7": //A week after
           case "w": {
             const weathers = [];
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 7; i++) {//change weathercodes to words
               weathers.push(subJS.c_w(weather_codes[i]));
             }
+            //Change array to text
             const times_sent = times.join();
             const weathers_sent = weathers.join();
             const temps_max_sent = temp_maxs.join();
