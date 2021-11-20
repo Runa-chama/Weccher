@@ -27,7 +27,7 @@ client.on('message', async message => {
     const command_options = message.content.slice(prefix.length).trim().split(/ +/g);
     const message_channel_id = message.channel.id;
     let got_JSON;
-    let address = encodeURI(command_options[1]);
+    const address = encodeURI(command_options[1]);
 
     console.log("options:" + command_options);
 
@@ -49,11 +49,11 @@ client.on('message', async message => {
         return;
       }
       
-      let position = body;
+      const position = body;
       const result = JSON.parse(position);
-      let lat = result.lat;
-      let lng = result.lng;
-      let formated_address = result.formated_address;
+      const lat = result.lat;
+      const lng = result.lng;
+      const formated_address = result.formated_address;
       console.log("lat:" + lat + "\nlng:" + lng);
 
       const options_weather = {
