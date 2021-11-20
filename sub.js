@@ -1,3 +1,4 @@
+//wmocode relative table
 exports.c_w = function change_weathercode(code){
   let weather;
     switch(code){

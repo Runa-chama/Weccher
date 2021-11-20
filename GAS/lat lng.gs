@@ -1,10 +1,10 @@
 function doGet(e) {
-  var p = e.parameter;
-  var address = p.address;
-  console.log(address);
-  var geocoder = Maps.newGeocoder();
+  var p = e.parameter; 
+  var address = p.address; //get Address or serch word from parameter:address
+  console.log(address); 
+  var geocoder = Maps.newGeocoder(); 
   geocoder.setLanguage('ja');
-  var response = geocoder.geocode(address);
+  var response = geocoder.geocode(address); //get lat and lng
   console.log(response);
   if (response['results'][0] == null){
     return ContentService.createTextOutput().setContent('Error');

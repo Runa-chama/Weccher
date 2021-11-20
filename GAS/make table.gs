@@ -1,13 +1,16 @@
 var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('table');
 var file_url=""
 function doGet(e){
+  //get informations from parameters
   const p = e.parameters;
-  const t = p.t+"";
-  const w = p.w+"";
-  const tmaxs = p.tmax+"";
-  const tmins = p.tmin+""; 
-  const pres = p.pre+"";
-  const times = t.split(',');
+  const t = p.t+""; //times
+  const w = p.w+""; //weathers
+  const tmaxs = p.tmax+""; //highest temperatures
+  const tmins = p.tmin+""; //lowest temperatures
+  const pres = p.pre+""; //precipitation amounts
+  
+  //change text to array
+  const times = t.split(','); 
   const weathers = w.split(',');
   const temp_maxs = tmaxs.split(',');
   const temp_mins = tmins.split(',');

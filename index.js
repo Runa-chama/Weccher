@@ -12,7 +12,7 @@ const discord = require('discord.js');
 const client = new discord.Client();
 const request = require('request');
 const fs = require('fs');
-const subJS = require('./sub');
+const subJS = require('./sub');//sub script
 
 const prefix = "!w";
 const theme_color = "#03e8fc";
@@ -28,8 +28,11 @@ client.on('message', async message => {
     const message_channel_id = message.channel.id;
     let got_JSON;
     let address = encodeURI(command_options[1]);
+
     console.log("options:" + command_options);
+
     message.channel.startTyping();
+
     if (command_options[0] == 'help') {//help command
       const help_message = JSON.parse(fs.readFileSync('./help.json', 'utf8'));
       message.reply(help_message);
@@ -45,6 +48,7 @@ client.on('message', async message => {
         client.channels.cache.get(message_channel_id).send("情報を取得できませんでした。");
         return;
       }
+      
       let position = body;
       const result = JSON.parse(position);
       let lat = result.lat;
@@ -89,7 +93,7 @@ client.on('message', async message => {
               }
             });
           }
-            break;
+          break;
 
           case "0": //Get weather [n]day after
           case "1":
@@ -119,6 +123,7 @@ client.on('message', async message => {
               });
             }
             break;
+
           case "7": //A week after
           case "w": {
             const weathers = [];
@@ -151,14 +156,14 @@ client.on('message', async message => {
               });
             })
           }
-            break;
+          break;
+
           default:
             client.channels.cache.get(message_channel_id).send("不明なコマンドです。```" + prefix + " help```でヘルプを表示します。");
         }
       })
     })
     message.channel.stopTyping();
-
   }
 })
 
