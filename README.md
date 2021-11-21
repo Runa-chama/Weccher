@@ -1,5 +1,5 @@
-# Wecchar
-Wecchar (ja)
+# Weccher
+Weccher (ja)
 
 This is a discord bot project. This bot can get weathers around the world.
 
