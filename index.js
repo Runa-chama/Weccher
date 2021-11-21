@@ -26,7 +26,6 @@ client.on('message', async message => {
   if (message.content.startsWith(prefix)) {//Is this a command?
     const command_options = message.content.slice(prefix.length).trim().split(/ +/g);
     const message_channel_id = message.channel.id;
-    let got_JSON;
     const address = encodeURI(command_options[1]);
 
     console.log("options:" + command_options);
